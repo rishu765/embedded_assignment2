@@ -72,5 +72,22 @@ PPS:= $(SOURCES:.c=.i)
 MAPS:= $(SOURCES:.c=.map)
 OUTS:= $(SOURCES:.c=.out)
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
+# Target: <file>.i
+# Prerequisites: the .c file
+# Output: the .d as well as .i files
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
+%.i : %.c
+	$(CC) $(CPPFLAGs) $(DEFINEFLAG) $<
+	$(CC) $(DEFINEFLAG) -E -o $@ $<
+#$(CC) $(CPPFLAGs) -E -o $@ $< 
+### -E: Stop after the preprocessing stage; do not run the compiler proper. The output is in the form of preprocessed source code, which is sent to the standard output. 
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
+# Target: <file>.asm
+# Prerequisites: the .c file
+# Output: the .asm file whether from the .c file or the object file
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
+
 
 
